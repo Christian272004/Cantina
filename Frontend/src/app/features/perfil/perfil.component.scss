@@ -1,0 +1,38 @@
+main.perfil {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fef6e9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .info {
+    margin-bottom: 2rem;
+  }
+  
+  #saldo {
+    font-weight: bold;
+    color: #f26522;
+  }
+  
+  #notificacio {
+    color: red;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+  
+  .ocult {
+    display: none;
+  }
+  
+  .afegir-saldo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  #afegir {
+    width: fit-content;
+    align-self: flex-start;
+  }

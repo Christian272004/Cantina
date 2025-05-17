@@ -1,0 +1,112 @@
+<app-header></app-header>
+<div class="central">
+            <div class="central-content">
+                <nav>
+                    <ul>
+                        <li><a href="#menu-begudes">🥤 Begudes</a></li>
+                        <li><a href="#menu-entrepans">🥪 Entrepans</a></li>
+                        <li><a href="#menu-per-picar">🍟 Per picar</a></li>
+                        <li><a href="#menu-fruita">🍎 Fruita</a></li>
+                        <li><a href="#menu-menu">🍽️ Menú</a></li>
+                        <li><a href="#menu-especials">🍕 Especials</a></li>
+                    </ul>
+                </nav>
+                <main>
+                    <section class="items" id="menu-begudes">
+                        <h2>🥤 Begudes</h2>
+                        <div class="llista-productes" id="begudes">
+                            @for (producte of productes[0]; track producte.id ) {
+                                @if (producte.categoria === 'begudes') {
+                                    <div class="producte" (click)="producte.disponible && agregarAlCarrito(producte)" [ngClass]="{'': producte.disponible, 'esgotat': !producte.disponible}">
+                                    <h3>{{ producte.nom }}</h3>
+                                    <p class="preu">{{ producte.preu | currency }}</p>
+                                </div>
+                                }
+                            }
+                        </div>
+                    </section>
+                    <section class="items" id="menu-entrepans">
+                        <h2>🥪 Entrepans</h2>
+                        <div class="llista-productes" id="entrepans">
+                            @for (producte of productes[0]; track producte.id ) {
+                                @if (producte.categoria === 'entrepans') {
+                                    <div class="producte" (click)="producte.disponible && agregarAlCarrito(producte)" [ngClass]="{'': producte.disponible, 'esgotat': !producte.disponible}">
+                                    <h3>{{ producte.nom }}</h3>
+                                    <p class="preu">{{ producte.preu | currency }}</p>
+                                </div>
+                                }
+                            }
+                        </div>
+                    </section>
+                    <section class="items" id="menu-per-picar">
+                        <h2>🍟 Per picar</h2>
+                        <div class="llista-productes" id="per-picar">
+                            @for (producte of productes[0]; track producte.id ) {
+                                @if (producte.categoria === 'per-picar') {
+                                    <div class="producte" (click)="producte.disponible && agregarAlCarrito(producte)" [ngClass]="{'': producte.disponible, 'esgotat': !producte.disponible}">
+                                    <h3>{{ producte.nom }}</h3>
+                                    <p class="preu">{{ producte.preu | currency }}</p>
+                                </div>
+                                }
+                            }
+                        </div>
+                    </section>
+                    <section class="items" id="menu-fruita">
+                        <h2>🍎 Fruita</h2>
+                        <div class="llista-productes" id="fruita">
+                            @for (producte of productes[0]; track producte.id ) {
+                                @if (producte.categoria === 'fruita') {
+                                    <div class="producte" (click)="producte.disponible && agregarAlCarrito(producte)" [ngClass]="{'': producte.disponible, 'esgotat': !producte.disponible}">
+                                    <h3>{{ producte.nom }}</h3>
+                                    <p class="preu">{{ producte.preu | currency }}</p>
+                                </div>
+                                }
+                            }
+                        </div>
+                    </section>
+                    <section class="items" id="menu-menu">
+                        <h2>🍽️ Menú</h2>
+                        <div class="llista-productes" id="menu">
+                            @for (producte of productes[0]; track producte.id ) {
+                                @if (producte.categoria === 'menu') {
+                                    <div class="producte" (click)="producte.disponible && agregarAlCarrito(producte)" [ngClass]="{'': producte.disponible, 'esgotat': !producte.disponible}">
+                                    <h3>{{ producte.nom }}</h3>
+                                    <p class="preu">{{ producte.preu | currency }}</p>
+                                </div>
+                                }
+                            }
+                        </div>
+                    </section>
+                    <section class="items" id="menu-especials">
+                        <h2>🍕 Especials</h2>
+                        <div class="llista-productes" id="especials">
+                            @for (producte of productes[0]; track producte.id ) {
+                                @if (producte.categoria === 'especials') {
+                                    <div class="producte" (click)="producte.disponible && agregarAlCarrito(producte)" [ngClass]="{'': producte.disponible, 'esgotat': !producte.disponible}">
+                                    <h3>{{ producte.nom }}</h3>
+                                    <p class="preu">{{ producte.preu | currency }}</p>
+                                </div>
+                                }
+                            }
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+        <div id="carrito" class="carrito-lateral" [ngClass]="{ 'abierto': carrito.length > 0}">
+            <!-- Boton para cerrar el carrito -->
+            <button class="btn-tancar" (click)="carrito = []">✖</button>
+            <h3>🛒 El teu carret</h3>
+            <ul id="carrito-lista"> 
+                <li *ngFor="let item of carrito">
+                <span class="carrito-nom">{{ item.nom }} x{{ item.unitats }}</span>
+                <span class="carrito-preu">{{ (item.preu * item.unitats) | number:'1.2-2' }}€</span>
+                </li>
+            </ul>
+            <div id="carrito-total">
+                Total: {{ getTotal() | number:'1.2-2' }}€
+                @if (carrito.length > 0) {
+                    <button class="btn-pagar">pagar</button>
+                }
+            </div>
+        </div>
