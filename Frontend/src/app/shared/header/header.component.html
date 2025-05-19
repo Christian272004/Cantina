@@ -5,11 +5,10 @@
     </div>
     <nav class="menu-principal">
         <a [routerLink]="['/productes']" class="btn">📋 Veure Productes</a>
-        <a href="comanda.html" class="btn">🛒 Fer Comanda</a>
-        <a href="historial.html" class="btn">📜 Historial</a>
+        <a [routerLink]="['/historial']" class="btn">📜 Historial</a>
         <a [routerLink]="['/perfil']" class="btn">👤 Perfil</a>
-        <a href="reserves.html" class="btn">📦 Reserves</a>
-        <a href="gestio-productes.html" class="btn">⚙️ Gestió Productes</a>
-        <a (click)="logout()" class="btn">Tancar Sessió</a>
+        <a [routerLink]="['/reserves']" class="btn">📦 Reserves</a>
+        <a [routerLink]="['/gestion']" class="btn">⚙️ Gestió Productes</a>
+        <a (click)="logout()" class="btn">🔒 Tancar Sessió</a>
     </nav>
 </header>

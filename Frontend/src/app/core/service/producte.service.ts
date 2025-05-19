@@ -13,4 +13,8 @@ export class ProducteService {
   getProductes() {
     return this.http.get(`${this.apiUrl}/productes`, { withCredentials: true });
   }
+
+  addProducte(producte: any) {
+    return this.http.post(`${this.apiUrl}/productes`, producte, { withCredentials: true });
+  }
 }

@@ -19,4 +19,7 @@ router.post('/logout', authMiddleware,  ApiController.logout);
 router.post('/carrito', authMiddleware, ApiController.addToCarrito);
 router.post('/addToCart', authMiddleware, ApiController.addToCarrito);
 
+
+
+
 export default router;

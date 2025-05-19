@@ -24,6 +24,15 @@ export class AuthService {
       );
     }
 
+    register(credentials: { nom: string; email: string; password: string; }): Observable<any> {
+      return this.http.post(`${this.apiUrl}/register`, credentials, {withCredentials: true}).pipe(
+        tap(() => {
+          this.isAuthenticatedSubject.next(true);
+          this.router.navigate(['/productes']);
+        })
+      );
+    }
+
     logout() { 
       this.http.post(`${this.apiUrl}/logout`, {}, { withCredentials: true }).subscribe(
         (response) => {

@@ -13,8 +13,11 @@ import { Router } from '@angular/router';
 export class AuthComponent {
   public isAuthenticated = false;
   public isLoading = false;
+  public nom: string = '';
   public email: string = '';
   public password: string = '';
+  public confirm_password: string = '';
+  public mostrarLogin = true;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -50,12 +53,50 @@ export class AuthComponent {
     this.authService.login({ email: this.email, password: this.password }).subscribe(
       (response) => {
         console.log('Login successful', response);
-        // Handle successful login, e.g., redirect to another page
       },
       (error) => {
         console.error('Login failed', error);
-        // Handle login error, e.g., show an error message
       });
 
   }
+
+  register () {
+    if (this.nom === '' && this.email === '' && this.password === '' && this.confirm_password === '') {
+      alert('Please enter your name, email, password and confirm password');
+      return;
+    }
+    if (this.nom === '') {
+      alert('Please enter your name');
+      return;
+    }
+    if (this.email === '') {
+      alert('Please enter your email');
+      return;
+    }
+    if (this.password === '') {
+      alert('Please enter your password');
+      return;
+    }
+    if (this.confirm_password === '') {
+      alert('Please enter your confirm password');
+      return;
+    }
+    if (this.password !== this.confirm_password) {
+      alert('Passwords do not match');
+      return;
+    }
+    this.authService.register({ nom: this.nom, email: this.email, password: this.password }).subscribe(
+      (response) => {
+        console.log('Register successful', response);
+      },
+      (error) => {
+        console.error('Register failed', error);
+      });
+  }
+
+  
+
+cambiarVista() {
+  this.mostrarLogin = !this.mostrarLogin;
+}
 }

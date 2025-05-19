@@ -3,18 +3,18 @@
             <div class="central-content">
                 <nav>
                     <ul>
-                        <li><a href="#menu-begudes">🥤 Begudes</a></li>
-                        <li><a href="#menu-entrepans">🥪 Entrepans</a></li>
-                        <li><a href="#menu-per-picar">🍟 Per picar</a></li>
-                        <li><a href="#menu-fruita">🍎 Fruita</a></li>
-                        <li><a href="#menu-menu">🍽️ Menú</a></li>
-                        <li><a href="#menu-especials">🍕 Especials</a></li>
+                        <li><a [routerLink]="[]" fragment="begudes">🥤 Begudes</a></li>
+                        <li><a [routerLink]="[]" fragment="entrepans">🥪 Entrepans</a></li>
+                        <li><a [routerLink]="[]" fragment="per-picar">🍟 Per picar</a></li>
+                        <li><a [routerLink]="[]" fragment="fruita">🍎 Fruita</a></li>
+                        <li><a [routerLink]="[]" fragment="menu">🍽️ Menú</a></li>
+                        <li><a [routerLink]="[]" fragment="especials">🍕 Especials</a></li>
                     </ul>
                 </nav>
                 <main>
-                    <section class="items" id="menu-begudes">
+                    <section class="items" id="begudes">
                         <h2>🥤 Begudes</h2>
-                        <div class="llista-productes" id="begudes">
+                        <div class="llista-productes">
                             @for (producte of productes[0]; track producte.id ) {
                                 @if (producte.categoria === 'begudes') {
                                     <div class="producte" (click)="producte.disponible && agregarAlCarrito(producte)" [ngClass]="{'': producte.disponible, 'esgotat': !producte.disponible}">
@@ -25,9 +25,9 @@
                             }
                         </div>
                     </section>
-                    <section class="items" id="menu-entrepans">
+                    <section class="items" id="entrepans">
                         <h2>🥪 Entrepans</h2>
-                        <div class="llista-productes" id="entrepans">
+                        <div class="llista-productes">
                             @for (producte of productes[0]; track producte.id ) {
                                 @if (producte.categoria === 'entrepans') {
                                     <div class="producte" (click)="producte.disponible && agregarAlCarrito(producte)" [ngClass]="{'': producte.disponible, 'esgotat': !producte.disponible}">
@@ -38,9 +38,9 @@
                             }
                         </div>
                     </section>
-                    <section class="items" id="menu-per-picar">
+                    <section class="items" id="per-picar">
                         <h2>🍟 Per picar</h2>
-                        <div class="llista-productes" id="per-picar">
+                        <div class="llista-productes">
                             @for (producte of productes[0]; track producte.id ) {
                                 @if (producte.categoria === 'per-picar') {
                                     <div class="producte" (click)="producte.disponible && agregarAlCarrito(producte)" [ngClass]="{'': producte.disponible, 'esgotat': !producte.disponible}">
@@ -51,9 +51,9 @@
                             }
                         </div>
                     </section>
-                    <section class="items" id="menu-fruita">
+                    <section class="items" id="fruita">
                         <h2>🍎 Fruita</h2>
-                        <div class="llista-productes" id="fruita">
+                        <div class="llista-productes">
                             @for (producte of productes[0]; track producte.id ) {
                                 @if (producte.categoria === 'fruita') {
                                     <div class="producte" (click)="producte.disponible && agregarAlCarrito(producte)" [ngClass]="{'': producte.disponible, 'esgotat': !producte.disponible}">
@@ -64,9 +64,9 @@
                             }
                         </div>
                     </section>
-                    <section class="items" id="menu-menu">
+                    <section class="items" id="menu">
                         <h2>🍽️ Menú</h2>
-                        <div class="llista-productes" id="menu">
+                        <div class="llista-productes">
                             @for (producte of productes[0]; track producte.id ) {
                                 @if (producte.categoria === 'menu') {
                                     <div class="producte" (click)="producte.disponible && agregarAlCarrito(producte)" [ngClass]="{'': producte.disponible, 'esgotat': !producte.disponible}">
@@ -77,9 +77,9 @@
                             }
                         </div>
                     </section>
-                    <section class="items" id="menu-especials">
+                    <section class="items" id="especials">
                         <h2>🍕 Especials</h2>
-                        <div class="llista-productes" id="especials">
+                        <div class="llista-productes">
                             @for (producte of productes[0]; track producte.id ) {
                                 @if (producte.categoria === 'especials') {
                                     <div class="producte" (click)="producte.disponible && agregarAlCarrito(producte)" [ngClass]="{'': producte.disponible, 'esgotat': !producte.disponible}">
@@ -94,7 +94,6 @@
             </div>
         </div>
         <div id="carrito" class="carrito-lateral" [ngClass]="{ 'abierto': carrito.length > 0}">
-            <!-- Boton para cerrar el carrito -->
             <button class="btn-tancar" (click)="carrito = []">✖</button>
             <h3>🛒 El teu carret</h3>
             <ul id="carrito-lista"> 

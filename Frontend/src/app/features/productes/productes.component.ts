@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { ProducteService } from '../../core/service/producte.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { HeaderComponent } from '../../shared/header/header.component';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-productes',
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule, HeaderComponent, RouterModule],
   templateUrl: './productes.component.html',
   styleUrl: './productes.component.scss'
 })
@@ -14,10 +15,17 @@ import { HeaderComponent } from '../../shared/header/header.component';
 export class ProductesComponent {
   productes: any[] = [];
 
-  constructor(private producteService: ProducteService) { }
+  constructor(private producteService: ProducteService, private route: ActivatedRoute, private viewportScroller: ViewportScroller) { }
 
   ngOnInit() {
     this.cargarProductes();
+    this.route.fragment.subscribe((fragment) => {
+      if (fragment) {
+        setTimeout(() => {
+          this.viewportScroller.scrollToAnchor(fragment);
+        }, 0);
+      }
+    })
   }
 
   cargarProductes() {

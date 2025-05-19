@@ -1,0 +1,33 @@
+ main.gestio-productes {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: #fff8f0;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .gestio-productes h2 {
+        text-align: center;
+        color: #f26522;
+        margin-bottom: 1.5rem;
+    }
+
+    .gestio-productes form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .gestio-productes label {
+        font-weight: 500;
+    }
+
+    .gestio-productes input[type="text"],
+    .gestio-productes input[type="number"],
+    .gestio-productes input[type="file"] {
+        padding: 0.5rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+    }
