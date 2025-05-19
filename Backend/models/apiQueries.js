@@ -1,4 +1,4 @@
-import { User, Producte } from './models.js';
+import { User, Producte, Cart, CartItem } from './models.js';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
@@ -62,3 +62,66 @@ export const verifyAuthToken = (token) => {
     return { authenticated: false };
   }
 };
+
+export const verifyCart = async (userId) => {
+    try {
+        const cart = await Cart.findOne({
+            where: { user_id: userId }
+        });
+        return cart;
+    } catch (error) {
+        throw new Error('Error verifying cart: ' + error.message);
+    }
+};
+
+export const createCart = async (userId) => {
+    try {
+        const cart = await Cart.create({
+            user_id: userId,
+            created_at: new Date(),
+        });
+        return cart;
+    } catch (error) {
+        throw new Error('Error creating cart: ' + error.message);
+    }
+}
+
+export const guardarProducto = async (productId, cartId) => {
+    try {
+        const cartItem = await CartItem.create({
+            cart_id: cartId,
+            product_id: productId,
+            quantity: 1,
+        });
+        return cartItem;
+    } catch (error) {
+        throw new Error('Error saving product to cart: ' + error.message);
+    }
+}
+
+export const producto = async (productId, cartId) => {
+    try {
+        const cartItem = await CartItem.findOne({
+            where: {
+                cart_id: cartId,
+                product_id: productId
+            }
+        });
+        // Sumar uno si existe
+        if (cartItem) {
+            cartItem.quantity += 1;
+            await cartItem.save();
+        } else {
+            // Si no existe, crear uno nuevo
+            const newCartItem = await CartItem.create({
+                cart_id: cartId,
+                product_id: productId,
+                quantity: 1,
+            });
+            return newCartItem;
+        }
+        return cartItem;
+    } catch (error) {
+        throw new Error('Error finding product in cart: ' + error.message);
+    }
+}

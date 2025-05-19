@@ -1,4 +1,4 @@
-import { registerUser, loginUser, getProductesModel, generateAuthToken, verifyAuthToken } from "../models/apiQueries.js";
+import { registerUser, loginUser, getProductesModel, generateAuthToken, verifyAuthToken, verifyCart, createCart, guardarProducto, producto } from "../models/apiQueries.js";
 
 export class ApiController {
     static async register(req, res) {
@@ -74,6 +74,40 @@ export class ApiController {
         sameSite: 'none', 
       });
       res.json({ succes: true, message: "Sesión cerrada", data: [] });
+    } catch (err) {
+      res.status(500).json({ succes: false, message: err.message, data: [] });
+    }
+  }
+
+  static async addToCarrito(req, res) {
+    try {
+      const { id } = req.user;
+      const { productId } = req.body;
+
+
+      if (!productId) {
+        return res.status(400).json({ succes: false, message: "Product ID is required", data: [] });
+      }
+
+      // Primero verificar si tiene un carrito el usuario
+      const cart = await verifyCart(id);
+
+      if (!cart) {
+        const newCart = await createCart(id);
+        if (!newCart) {
+          return res.status(500).json({ succes: false, message: "Error creating cart", data: [] });
+        }
+
+      } else {
+        // Buscar si ya existe el producto en el carrito
+        const Product = await producto(productId, cart.id);
+        if (!Product) return res.status(404).json({ succes: false, message: "Product not found", data: [] });
+
+        res.status(200).json({ succes: true, message: "Producto añadido al carrito", data: [Product] });
+      }
+      
+
+      
     } catch (err) {
       res.status(500).json({ succes: false, message: err.message, data: [] });
     }

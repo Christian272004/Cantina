@@ -17,7 +17,7 @@
 
 .central-content > nav {
     position: sticky;
-    top: 120px; /* Ajusta según la altura de tu header */
+    top: 120px; 
     align-self: flex-start;
     z-index: 999;
     background: #f8f9fa;
@@ -81,6 +81,7 @@ main {
     gap: 20px; 
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .llista-productes {
@@ -112,6 +113,7 @@ main {
   .producte.esgotat {
     opacity: 0.5;
     position: relative;
+    cursor: not-allowed;
   }
   
   .producte.esgotat::after {
